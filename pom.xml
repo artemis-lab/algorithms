@@ -57,7 +57,7 @@
         </pluginManagement>
 
         <plugins>
-            <!-- Checkstyle: Google Java Style -->
+            <!-- Checkstyle: Google Java Style enforcement -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -80,7 +80,37 @@
                 </executions>
             </plugin>
 
-            <!-- JaCoCo: Code Coverage -->
+            <!-- Maven Enforcer: Build constraints (Java/Maven versions, dependency rules) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.6.2</version>
+                <configuration>
+                    <rules>
+                        <requireMavenVersion>
+                            <version>3.9.12</version>
+                        </requireMavenVersion>
+                        <requireJavaVersion>
+                            <version>25</version>
+                        </requireJavaVersion>
+                        <banDuplicatePomDependencyVersions />
+                        <banTransitiveDependencies />
+                        <dependencyConvergence />
+                    </rules>
+                    <fail>true</fail>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>enforce-rules</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <phase>validate</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- JaCoCo: Code coverage -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -142,77 +172,8 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- SpotBugs: Static Bug Detection -->
-            <plugin>
-                <groupId>com.github.spotbugs</groupId>
-                <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>4.9.8.2</version>
-                <configuration>
-                    <effort>Max</effort>
-                    <threshold>Low</threshold>
-                    <failOnError>true</failOnError>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>spotbugs-check</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <!-- OWASP Dependency Check: CVE scanning -->
-            <plugin>
-                <groupId>org.owasp</groupId>
-                <artifactId>dependency-check-maven</artifactId>
-                <version>12.2.0</version>
-                <configuration>
-                    <nvdApiKey>${nvd.api.key}</nvdApiKey>
-                    <failBuildOnCVSS>7</failBuildOnCVSS>
-                    <failOnError>false</failOnError>
-                    <nodeAnalyzerEnabled>false</nodeAnalyzerEnabled>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>dependency-check</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <!-- Maven Enforcer: Check Constraints -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.6.2</version>
-                <configuration>
-                    <rules>
-                        <requireMavenVersion>
-                            <version>3.9.12</version>
-                        </requireMavenVersion>
-                        <requireJavaVersion>
-                            <version>25</version>
-                        </requireJavaVersion>
-                        <banDuplicatePomDependencyVersions />
-                        <banTransitiveDependencies />
-                        <dependencyConvergence />
-                    </rules>
-                    <fail>true</fail>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>enforce-rules</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <phase>validate</phase>
-                    </execution>
-                </executions>
-            </plugin>
-            <!-- Maven Dependency: Manipulate Artifacts -->
+
+            <!-- Maven Dependency: Unused/undeclared dependency analysis -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -235,6 +196,90 @@
                             <failOnWarning>true</failOnWarning>
                             <ignoreNonCompile>true</ignoreNonCompile>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Maven Javadoc: Javadoc validation and completeness -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.12.0</version>
+                <configuration>
+                    <failOnWarnings>true</failOnWarnings>
+                    <doclint>all</doclint>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>javadoc-check</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>javadoc-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- OWASP Dependency Check: CVE vulnerability scanning -->
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>12.2.0</version>
+                <configuration>
+                    <nvdApiKey>${nvd.api.key}</nvdApiKey>
+                    <failBuildOnCVSS>7</failBuildOnCVSS>
+                    <failOnError>false</failOnError>
+                    <nodeAnalyzerEnabled>false</nodeAnalyzerEnabled>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>dependency-check</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- PMD: Static code analysis -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.28.0</version>
+                <configuration>
+                    <failOnViolation>true</failOnViolation>
+                    <printFailingErrors>true</printFailingErrors>
+                    <includeTests>true</includeTests>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>pmd-check</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- SpotBugs: Static bug detection -->
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>4.9.8.2</version>
+                <configuration>
+                    <effort>Max</effort>
+                    <threshold>Low</threshold>
+                    <failOnError>true</failOnError>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>spotbugs-check</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>

@@ -115,11 +115,13 @@ All checks run automatically via GitHub Actions on every push and pull request.
 | Tool                                                                          | Purpose                                                   | Phase    |
 | ----------------------------------------------------------------------------- | --------------------------------------------------------- | -------- |
 | [Checkstyle](https://checkstyle.org/)                                         | Google Java Style enforcement                             | validate |
-| [JaCoCo](https://www.jacoco.org/)                                             | Code coverage (80% line, 75% branch minimum)              | verify   |
-| [SpotBugs](https://spotbugs.github.io/)                                       | Static bug detection                                      | verify   |
-| [OWASP Dependency-Check](https://owasp.org/www-project-dependency-check/)     | CVE vulnerability scanning (CVSS >= 7 fails build)        | verify   |
 | [Maven Enforcer](https://maven.apache.org/enforcer/maven-enforcer-plugin/)    | Build constraints (Java/Maven versions, dependency rules) | validate |
+| [JaCoCo](https://www.jacoco.org/)                                             | Code coverage (80% line, 75% branch minimum)              | verify   |
 | [Maven Dependency](https://maven.apache.org/plugins/maven-dependency-plugin/) | Unused/undeclared dependency analysis                     | verify   |
+| [Maven Javadoc](https://maven.apache.org/plugins/maven-javadoc-plugin/)       | Javadoc validation and completeness                       | verify   |
+| [OWASP Dependency-Check](https://owasp.org/www-project-dependency-check/)     | CVE vulnerability scanning (CVSS >= 7 fails build)        | verify   |
+| [PMD](https://pmd.github.io/)                                                 | Static code analysis (unused code, dead code, complexity) | verify   |
+| [SpotBugs](https://spotbugs.github.io/)                                       | Static bug detection                                      | verify   |
 
 Coverage reports are uploaded to [Codecov](https://codecov.io/).
 

@@ -48,6 +48,14 @@ jobs:
           path: target/dependency-check-report.html
           retention-days: 7
 
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v6
+        if: always()
+        with:
+          name: jacoco-coverage-report
+          path: target/site/jacoco/
+          retention-days: 7
+
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
         with:

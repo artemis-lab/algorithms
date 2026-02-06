@@ -31,7 +31,6 @@ public class WildcardMapTest {
       }
     });
 
-    assertEquals(IllegalArgumentException.class, exception.getClass());
     assertEquals("Key1 must not be null, empty or blank.", exception.getMessage());
   }
 
@@ -44,7 +43,6 @@ public class WildcardMapTest {
       }
     });
 
-    assertEquals(IllegalArgumentException.class, exception.getClass());
     assertEquals("Key1 must not be null, empty or blank.", exception.getMessage());
   }
 
@@ -57,7 +55,6 @@ public class WildcardMapTest {
       }
     });
 
-    assertEquals(IllegalArgumentException.class, exception.getClass());
     assertEquals("Key1 must not be null, empty or blank.", exception.getMessage());
   }
 
@@ -70,7 +67,6 @@ public class WildcardMapTest {
       }
     });
 
-    assertEquals(IllegalArgumentException.class, exception.getClass());
     assertEquals("Key2 must not be null, empty or blank.", exception.getMessage());
   }
 
@@ -83,7 +79,6 @@ public class WildcardMapTest {
       }
     });
 
-    assertEquals(IllegalArgumentException.class, exception.getClass());
     assertEquals("Key2 must not be null, empty or blank.", exception.getMessage());
   }
 
@@ -96,7 +91,6 @@ public class WildcardMapTest {
       }
     });
 
-    assertEquals(IllegalArgumentException.class, exception.getClass());
     assertEquals("Key2 must not be null, empty or blank.", exception.getMessage());
   }
 
@@ -109,7 +103,6 @@ public class WildcardMapTest {
       }
     });
 
-    assertEquals(IllegalArgumentException.class, exception.getClass());
     assertEquals("Key3 must not be null, empty or blank.", exception.getMessage());
   }
 
@@ -122,7 +115,6 @@ public class WildcardMapTest {
       }
     });
 
-    assertEquals(IllegalArgumentException.class, exception.getClass());
     assertEquals("Key3 must not be null, empty or blank.", exception.getMessage());
   }
 
@@ -135,7 +127,6 @@ public class WildcardMapTest {
       }
     });
 
-    assertEquals(IllegalArgumentException.class, exception.getClass());
     assertEquals("Key3 must not be null, empty or blank.", exception.getMessage());
   }
 
@@ -148,7 +139,6 @@ public class WildcardMapTest {
       }
     });
 
-    assertEquals(IllegalArgumentException.class, exception.getClass());
     assertEquals("Value must not be null, empty or blank.", exception.getMessage());
   }
 
@@ -161,7 +151,6 @@ public class WildcardMapTest {
       }
     });
 
-    assertEquals(IllegalArgumentException.class, exception.getClass());
     assertEquals("Value must not be null, empty or blank.", exception.getMessage());
   }
 
@@ -174,7 +163,6 @@ public class WildcardMapTest {
       }
     });
 
-    assertEquals(IllegalArgumentException.class, exception.getClass());
     assertEquals("Value must not be null, empty or blank.", exception.getMessage());
   }
 

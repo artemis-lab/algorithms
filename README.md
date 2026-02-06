@@ -1,3 +1,9 @@
+[![Code Quality & Build](https://github.com/artemis-lab/algorithms/actions/workflows/ci.yml/badge.svg)](https://github.com/artemis-lab/algorithms/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/artemis-lab/algorithms/graph/badge.svg?token=RD3FIZ4IWU)](https://codecov.io/gh/artemis-lab/algorithms)
+![Java Version](https://img.shields.io/badge/Java-25-orange?logo=openjdk&logoColor=white)
+![Maven Version](https://img.shields.io/badge/Maven-3.9.12-C71A36?logo=apachemaven&logoColor=white)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 <!-- omit in toc -->
 # Algorithms & Data Structures
 

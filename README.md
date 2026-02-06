@@ -102,28 +102,6 @@ Or configure it permanently in `~/.m2/settings.xml`:
 </settings>
 ```
 
-To encrypt the key, first generate a master password from the `~/.m2` directory:
-
-```bash
-cd ~/.m2
-mvn --encrypt-master-password YOUR_MASTER_PASSWORD
-```
-
-Then create `~/.m2/settings-security.xml` with the encrypted master password:
-
-```xml
-<settingsSecurity>
-  <master>{YOUR_ENCRYPTED_MASTER_PASSWORD}</master>
-</settingsSecurity>
-```
-
-Encrypt the NVD API key and use it in `settings.xml` instead of the plain text key:
-
-```bash
-cd ~/.m2
-mvn --encrypt-password YOUR_NVD_API_KEY
-```
-
 ## Code Quality
 
 All checks run automatically via GitHub Actions on every push and pull request.

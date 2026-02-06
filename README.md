@@ -1,6 +1,41 @@
+<!-- omit in toc -->
 # Algorithms & Data Structures
 
 A collection of algorithms & data structures implemented in Java.
+
+<!-- omit in toc -->
+## Table of Contents
+
+- [Algorithms](#algorithms)
+  - [Shuffle](#shuffle)
+- [Data Structures](#data-structures)
+  - [WildcardMap](#wildcardmap)
+- [Prerequisites](#prerequisites)
+- [Build](#build)
+- [License](#license)
+
+## Algorithms
+
+### Shuffle
+
+Fisher-Yates shuffle implementations providing three variants:
+
+- **`shuffle`** - Inside-out variant that returns a shuffled copy without modifying the original array
+- **`shuffleForward`** - In-place forward variant, iterating first to last
+- **`shuffleReverse`** - In-place Durstenfeld/Knuth variant, iterating last to first
+
+**Example:**
+
+```java
+Integer[] array = {1, 2, 3, 4, 5};
+
+// Shuffled copy (original unchanged)
+Integer[] shuffled = Shuffle.shuffle(array);
+
+// In-place shuffle
+Shuffle.shuffleForward(array);
+Shuffle.shuffleReverse(array);
+```
 
 ## Data Structures
 

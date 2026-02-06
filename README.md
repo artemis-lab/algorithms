@@ -77,9 +77,10 @@ map.get("Honda", null, null);       // ["VIN123", "VIN456"] - wildcard query
 ## Build
 
 ```bash
-./mvnw compile        # compile sources
-./mvnw test           # run tests
-./mvnw verify         # full build with all quality checks
+./mvnw compile         # compile sources
+./mvnw test            # run tests
+./mvnw verify          # full build with all quality checks
+./mvnw verify -Ppitest # full build with mutation testing
 ```
 
 ### NVD API Key
@@ -116,6 +117,7 @@ All checks run automatically via GitHub Actions on every push and pull request.
 | ----------------------------------------------------------------------------- | --------------------------------------------------------- | -------- |
 | [Checkstyle](https://checkstyle.org/)                                         | Google Java Style enforcement                             | validate |
 | [Maven Enforcer](https://maven.apache.org/enforcer/maven-enforcer-plugin/)    | Build constraints (Java/Maven versions, dependency rules) | validate |
+| [Sortpom](https://github.com/Ekryd/sortpom)                                   | POM formatting and ordering                               | validate |
 | [Error Prone](https://errorprone.info/)                                        | Compile-time bug detection                                | compile  |
 | [JaCoCo](https://www.jacoco.org/)                                             | Code coverage (80% line, 75% branch minimum)              | verify   |
 | [Maven Dependency](https://maven.apache.org/plugins/maven-dependency-plugin/) | Unused/undeclared dependency analysis                     | verify   |
@@ -123,6 +125,7 @@ All checks run automatically via GitHub Actions on every push and pull request.
 | [Modernizer](https://github.com/gaul/modernizer-maven-plugin)                 | Legacy API detection                                      | verify   |
 | [OWASP Dependency-Check](https://owasp.org/www-project-dependency-check/)     | CVE vulnerability scanning (CVSS >= 7 fails build)        | verify   |
 | [PMD](https://pmd.github.io/)                                                 | Static code analysis (unused code, dead code, complexity) | verify   |
+| [Pitest](https://pitest.org/)                                                  | Mutation testing (80% threshold, profile: `-Ppitest`)     | verify   |
 | [SpotBugs](https://spotbugs.github.io/)                                       | Static bug detection                                      | verify   |
 
 [Dependabot](https://docs.github.com/en/code-security/dependabot) is enabled for automated Maven and GitHub Actions dependency updates.

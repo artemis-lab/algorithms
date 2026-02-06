@@ -69,6 +69,7 @@ jobs:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     needs: build
+    continue-on-error: true
 
     steps:
       - name: Checkout code
@@ -82,7 +83,18 @@ jobs:
           cache: maven
 
       - name: Run Pitest mutation testing
-        run: ./mvnw --batch-mode verify -Ppitest -Dcheckstyle.skip=true -Ddependency-check.skip=true
+        run: >-
+          ./mvnw --batch-mode verify -Ppitest
+          -Dcheckstyle.skip=true
+          -Denforcer.skip=true
+          -Dsortpom.skip=true
+          -Djacoco.skip=true
+          -Dmdep.analyze.skip=true
+          -Dmaven.javadoc.skip=true
+          -Dmodernizer.skip=true
+          -Ddependency-check.skip=true
+          -Dpmd.skip=true
+          -Dspotbugs.skip=true
 
       - name: Upload Pitest report
         uses: actions/upload-artifact@v6

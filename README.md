@@ -111,7 +111,7 @@ Or configure it permanently in `~/.m2/settings.xml`:
 
 ## Code Quality
 
-All checks run automatically via GitHub Actions on every push and pull request.
+All checks run automatically via GitHub Actions on every push and pull request. Mutation testing runs only on pull requests.
 
 | Tool                                                                          | Purpose                                                   | Phase    |
 | ----------------------------------------------------------------------------- | --------------------------------------------------------- | -------- |

@@ -110,6 +110,26 @@
                 </executions>
             </plugin>
 
+            <!-- Error Prone: Compile-time bug detection -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.15.0</version>
+                <configuration>
+                    <compilerArgs>
+                        <arg>-XDcompilePolicy=simple</arg>
+                        <arg>-Xplugin:ErrorProne</arg>
+                    </compilerArgs>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>com.google.errorprone</groupId>
+                            <artifactId>error_prone_core</artifactId>
+                            <version>2.47.0</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
             <!-- JaCoCo: Code coverage -->
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -215,6 +235,27 @@
                         <phase>verify</phase>
                         <goals>
                             <goal>javadoc-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Modernizer: Legacy API detection -->
+            <plugin>
+                <groupId>org.gaul</groupId>
+                <artifactId>modernizer-maven-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <javaVersion>25</javaVersion>
+                    <failOnViolations>true</failOnViolations>
+                    <includeTestClasses>true</includeTestClasses>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>modernizer-check</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>modernizer</goal>
                         </goals>
                     </execution>
                 </executions>

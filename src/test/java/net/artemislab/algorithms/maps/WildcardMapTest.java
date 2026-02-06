@@ -1,167 +1,127 @@
 package net.artemislab.algorithms.maps;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.function.ThrowingRunnable;
-
-/**
- * The {@code WildcardMapTest} class implements tests for {@code WildcardMap}.
- */
+/** The {@code WildcardMapTest} class implements tests for {@code WildcardMap}. */
 public class WildcardMapTest {
 
   private WildcardMap wildcardMap;
 
-  @Before
+  @BeforeEach
   public void initialize() {
     wildcardMap = new WildcardMap();
   }
 
   @Test
   public void testPutOneEntry_NullKey1_ThrowsError() {
-    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, new ThrowingRunnable() {
-      @Override
-      public void run() throws Throwable {
-        wildcardMap.put(null, "Civic", "Blue", "123");
-      }
-    });
+    IllegalArgumentException exception =
+        assertThrows(
+            IllegalArgumentException.class, () -> wildcardMap.put(null, "Civic", "Blue", "123"));
 
     assertEquals("Key1 must not be null, empty or blank.", exception.getMessage());
   }
 
   @Test
   public void testPutOneEntry_EmptyKey1_ThrowsError() {
-    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, new ThrowingRunnable() {
-      @Override
-      public void run() throws Throwable {
-        wildcardMap.put("", "Civic", "Blue", "123");
-      }
-    });
+    IllegalArgumentException exception =
+        assertThrows(
+            IllegalArgumentException.class, () -> wildcardMap.put("", "Civic", "Blue", "123"));
 
     assertEquals("Key1 must not be null, empty or blank.", exception.getMessage());
   }
 
   @Test
   public void testPutOneEntry_BlankKey1_ThrowsError() {
-    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, new ThrowingRunnable() {
-      @Override
-      public void run() throws Throwable {
-        wildcardMap.put("   ", "Civic", "Blue", "123");
-      }
-    });
+    IllegalArgumentException exception =
+        assertThrows(
+            IllegalArgumentException.class, () -> wildcardMap.put("   ", "Civic", "Blue", "123"));
 
     assertEquals("Key1 must not be null, empty or blank.", exception.getMessage());
   }
 
   @Test
   public void testPutOneEntry_NullKey2_ThrowsError() {
-    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, new ThrowingRunnable() {
-      @Override
-      public void run() throws Throwable {
-        wildcardMap.put("Honda", null, "Blue", "123");
-      }
-    });
+    IllegalArgumentException exception =
+        assertThrows(
+            IllegalArgumentException.class, () -> wildcardMap.put("Honda", null, "Blue", "123"));
 
     assertEquals("Key2 must not be null, empty or blank.", exception.getMessage());
   }
 
   @Test
   public void testPutOneEntry_EmptyKey2_ThrowsError() {
-    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, new ThrowingRunnable() {
-      @Override
-      public void run() throws Throwable {
-        wildcardMap.put("Honda", "", "Blue", "123");
-      }
-    });
+    IllegalArgumentException exception =
+        assertThrows(
+            IllegalArgumentException.class, () -> wildcardMap.put("Honda", "", "Blue", "123"));
 
     assertEquals("Key2 must not be null, empty or blank.", exception.getMessage());
   }
 
   @Test
   public void testPutOneEntry_BlankKey2_ThrowsError() {
-    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, new ThrowingRunnable() {
-      @Override
-      public void run() throws Throwable {
-        wildcardMap.put("Honda", "   ", "Blue", "123");
-      }
-    });
+    IllegalArgumentException exception =
+        assertThrows(
+            IllegalArgumentException.class, () -> wildcardMap.put("Honda", "   ", "Blue", "123"));
 
     assertEquals("Key2 must not be null, empty or blank.", exception.getMessage());
   }
 
   @Test
   public void testPutOneEntry_NullKey3_ThrowsError() {
-    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, new ThrowingRunnable() {
-      @Override
-      public void run() throws Throwable {
-        wildcardMap.put("Honda", "Civic", null, "123");
-      }
-    });
+    IllegalArgumentException exception =
+        assertThrows(
+            IllegalArgumentException.class, () -> wildcardMap.put("Honda", "Civic", null, "123"));
 
     assertEquals("Key3 must not be null, empty or blank.", exception.getMessage());
   }
 
   @Test
   public void testPutOneEntry_EmptyKey3_ThrowsError() {
-    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, new ThrowingRunnable() {
-      @Override
-      public void run() throws Throwable {
-        wildcardMap.put("Honda", "Civic", "", "123");
-      }
-    });
+    IllegalArgumentException exception =
+        assertThrows(
+            IllegalArgumentException.class, () -> wildcardMap.put("Honda", "Civic", "", "123"));
 
     assertEquals("Key3 must not be null, empty or blank.", exception.getMessage());
   }
 
   @Test
   public void testPutOneEntry_BlankKey3_ThrowsError() {
-    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, new ThrowingRunnable() {
-      @Override
-      public void run() throws Throwable {
-        wildcardMap.put("Honda", "Civic", "   ", "123");
-      }
-    });
+    IllegalArgumentException exception =
+        assertThrows(
+            IllegalArgumentException.class, () -> wildcardMap.put("Honda", "Civic", "   ", "123"));
 
     assertEquals("Key3 must not be null, empty or blank.", exception.getMessage());
   }
 
   @Test
   public void testPutOneEntry_NullValue_ThrowsError() {
-    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, new ThrowingRunnable() {
-      @Override
-      public void run() throws Throwable {
-        wildcardMap.put("Honda", "Civic", "Blue", null);
-      }
-    });
+    IllegalArgumentException exception =
+        assertThrows(
+            IllegalArgumentException.class, () -> wildcardMap.put("Honda", "Civic", "Blue", null));
 
     assertEquals("Value must not be null, empty or blank.", exception.getMessage());
   }
 
   @Test
   public void testPutOneEntry_EmptyValue_ThrowsError() {
-    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, new ThrowingRunnable() {
-      @Override
-      public void run() throws Throwable {
-        wildcardMap.put("Honda", "Civic", "Blue", "");
-      }
-    });
+    IllegalArgumentException exception =
+        assertThrows(
+            IllegalArgumentException.class, () -> wildcardMap.put("Honda", "Civic", "Blue", ""));
 
     assertEquals("Value must not be null, empty or blank.", exception.getMessage());
   }
 
   @Test
   public void testPutOneEntry_BlankValue_ThrowsError() {
-    IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, new ThrowingRunnable() {
-      @Override
-      public void run() throws Throwable {
-        wildcardMap.put("Honda", "Civic", "Blue", "   ");
-      }
-    });
+    IllegalArgumentException exception =
+        assertThrows(
+            IllegalArgumentException.class, () -> wildcardMap.put("Honda", "Civic", "Blue", "   "));
 
     assertEquals("Value must not be null, empty or blank.", exception.getMessage());
   }
@@ -234,9 +194,11 @@ public class WildcardMapTest {
     assertEquals(Arrays.asList("135", "579"), wildcardMap.get(null, "Juke", null));
     assertEquals(Arrays.asList("654", "135"), wildcardMap.get(null, null, "White"));
     assertEquals(Arrays.asList("579"), wildcardMap.get(null, null, "Red Metallic"));
-    assertEquals(Arrays.asList("123", "456", "789", "098", "468", "654", "246", "135", "579"),
+    assertEquals(
+        Arrays.asList("123", "456", "789", "098", "468", "654", "246", "135", "579"),
         wildcardMap.get(null, null, null));
-    assertEquals(Arrays.asList("123", "456", "789", "098", "468", "654", "246", "135", "579"),
+    assertEquals(
+        Arrays.asList("123", "456", "789", "098", "468", "654", "246", "135", "579"),
         wildcardMap.get("", "  ", null));
   }
 
@@ -275,12 +237,7 @@ public class WildcardMapTest {
     List<String> result = wildcardMap.get("Honda", "Civic", "Blue");
 
     // List.copyOf() returns immutable list
-    assertThrows(UnsupportedOperationException.class, new ThrowingRunnable() {
-      @Override
-      public void run() throws Throwable {
-        result.add("new");
-      }
-    });
+    assertThrows(UnsupportedOperationException.class, () -> result.add("new"));
   }
 
   @Test

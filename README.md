@@ -12,6 +12,9 @@ A collection of algorithms & data structures implemented in Java.
   - [WildcardMap](#wildcardmap)
 - [Prerequisites](#prerequisites)
 - [Build](#build)
+  - [NVD API Key](#nvd-api-key)
+- [Code Quality](#code-quality)
+  - [IDE Setup](#ide-setup)
 - [License](#license)
 
 ## Algorithms
@@ -63,14 +66,82 @@ map.get("Honda", null, null);       // ["VIN123", "VIN456"] - wildcard query
 ## Prerequisites
 
 - JDK 25+
-- Maven 3.9+
+- Maven 3.9.12+
 
 ## Build
 
 ```bash
-mvn compile
-mvn test
+./mvnw compile        # compile sources
+./mvnw test           # run tests
+./mvnw verify         # full build with all quality checks
 ```
+
+### NVD API Key
+
+OWASP Dependency-Check requires an [NVD API key](https://nvd.nist.gov/developers/request-an-api-key) for fast vulnerability database updates. You can pass it via command line:
+
+```bash
+./mvnw verify -Dnvd.api.key=YOUR_KEY
+```
+
+Or configure it permanently in `~/.m2/settings.xml`:
+
+```xml
+<settings>
+  <profiles>
+    <profile>
+      <id>security-profile</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <nvd.api.key>YOUR_KEY</nvd.api.key>
+      </properties>
+    </profile>
+  </profiles>
+</settings>
+```
+
+To encrypt the key, first generate a master password from the `~/.m2` directory:
+
+```bash
+cd ~/.m2
+mvn --encrypt-master-password YOUR_MASTER_PASSWORD
+```
+
+Then create `~/.m2/settings-security.xml` with the encrypted master password:
+
+```xml
+<settingsSecurity>
+  <master>{YOUR_ENCRYPTED_MASTER_PASSWORD}</master>
+</settingsSecurity>
+```
+
+Encrypt the NVD API key and use it in `settings.xml` instead of the plain text key:
+
+```bash
+cd ~/.m2
+mvn --encrypt-password YOUR_NVD_API_KEY
+```
+
+## Code Quality
+
+All checks run automatically via GitHub Actions on every push and pull request.
+
+| Tool                                                                          | Purpose                                                   | Phase    |
+| ----------------------------------------------------------------------------- | --------------------------------------------------------- | -------- |
+| [Checkstyle](https://checkstyle.org/)                                         | Google Java Style enforcement                             | validate |
+| [JaCoCo](https://www.jacoco.org/)                                             | Code coverage (80% line, 75% branch minimum)              | verify   |
+| [SpotBugs](https://spotbugs.github.io/)                                       | Static bug detection                                      | verify   |
+| [OWASP Dependency-Check](https://owasp.org/www-project-dependency-check/)     | CVE vulnerability scanning (CVSS >= 7 fails build)        | verify   |
+| [Maven Enforcer](https://maven.apache.org/enforcer/maven-enforcer-plugin/)    | Build constraints (Java/Maven versions, dependency rules) | validate |
+| [Maven Dependency](https://maven.apache.org/plugins/maven-dependency-plugin/) | Unused/undeclared dependency analysis                     | verify   |
+
+Coverage reports are uploaded to [Codecov](https://codecov.io/).
+
+### IDE Setup
+
+The project uses [google-java-format](https://github.com/google/google-java-format) for formatting. VSCode will recommend the extension automatically via `.vscode/extensions.json`.
 
 ## License
 

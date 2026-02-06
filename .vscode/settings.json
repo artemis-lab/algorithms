@@ -1,0 +1,5 @@
+{
+  "[java]": {
+    "editor.defaultFormatter": "JoseVSeb.google-java-format-for-vs-code"
+  }
+}

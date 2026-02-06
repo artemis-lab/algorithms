@@ -4,25 +4,21 @@ import java.lang.reflect.Array;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- * Utility class providing Fisher-Yates shuffle variants.
- */
+/** Utility class providing Fisher-Yates shuffle variants. */
 public class Shuffle {
 
-  private Shuffle() {
-  }
+  private Shuffle() {}
 
   /**
-   * Returns a shuffled copy of the given array using the inside-out variant of
-   * the Fisher-Yates algorithm.
-   * <p>
-   * Iterates from the first element to the last,
-   * placing each source element at a randomly chosen position in the result
-   * array.
-   * <p>
-   * The original array is not modified.
+   * Returns a shuffled copy of the given array using the inside-out variant of the Fisher-Yates
+   * algorithm.
    *
-   * @param <T>   The type of the array's elements.
+   * <p>Iterates from the first element to the last, placing each source element at a randomly
+   * chosen position in the result array.
+   *
+   * <p>The original array is not modified.
+   *
+   * @param <T> The type of the array's elements.
    * @param array The source array to shuffle.
    * @return A new array containing the elements of {@code array} in random order.
    * @throws NullPointerException if {@code array} is {@code null}.
@@ -44,13 +40,13 @@ public class Shuffle {
   }
 
   /**
-   * Shuffles elements of the given array in place using the forward variant of
-   * the Fisher-Yates algorithm.
-   * <p>
-   * Iterates from the first element to the last, swapping each element with a
-   * randomly chosen element from those at or before it.
+   * Shuffles elements of the given array in place using the forward variant of the Fisher-Yates
+   * algorithm.
    *
-   * @param <T>   The type of the array's elements.
+   * <p>Iterates from the first element to the last, swapping each element with a randomly chosen
+   * element from those at or before it.
+   *
+   * @param <T> The type of the array's elements.
    * @param array The array whose elements to shuffle.
    * @throws NullPointerException if {@code array} is {@code null}.
    * @see #shuffle(Object[])
@@ -65,13 +61,13 @@ public class Shuffle {
   }
 
   /**
-   * Shuffles elements of the given array in place using the Durstenfeld variant
-   * of the Fisher-Yates algorithm, as popularized by Knuth.
-   * <p>
-   * Iterates from the last element to the first, swapping each element with a
-   * randomly chosen element from those at or before it.
+   * Shuffles elements of the given array in place using the Durstenfeld variant of the Fisher-Yates
+   * algorithm, as popularized by Knuth.
    *
-   * @param <T>   The type of the array's elements.
+   * <p>Iterates from the last element to the first, swapping each element with a randomly chosen
+   * element from those at or before it.
+   *
+   * @param <T> The type of the array's elements.
    * @param array The array whose elements to shuffle.
    * @throws NullPointerException if {@code array} is {@code null}.
    * @see #shuffle(Object[])

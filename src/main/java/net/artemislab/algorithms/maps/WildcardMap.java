@@ -54,10 +54,10 @@ public class WildcardMap {
    * <p>Before adding a new entry all arguments are trimmed with all leading and trailing white
    * space characters removed.
    *
-   * @param key1 The first key component. Must not be null, empty or blank.
-   * @param key2 The second key component. Must not be null, empty or blank.
-   * @param key3 The third key component. Must not be null, empty or blank.
-   * @param value The value to store. Must not be null, empty or blank.
+   * @param key1 the first key component. Must not be null, empty or blank.
+   * @param key2 the second key component. Must not be null, empty or blank.
+   * @param key3 the third key component. Must not be null, empty or blank.
+   * @param value the value to store. Must not be null, empty or blank.
    * @throws IllegalArgumentException if any argument is null, empty or blank.
    */
   public void put(String key1, String key2, String key3, String value) {
@@ -90,9 +90,9 @@ public class WildcardMap {
    * <p>Any or all of the given arguments may have null, empty or blank value, which acts as a
    * wildcard matching all values for that key component.
    *
-   * @param key1 The first key component. May be null, empty or blank (wildcard).
-   * @param key2 The second key component. May be null, empty or blank (wildcard).
-   * @param key3 The third key component. May be null, empty or blank (wildcard).
+   * @param key1 the first key component. May be null, empty or blank (wildcard).
+   * @param key2 the second key component. May be null, empty or blank (wildcard).
+   * @param key3 the third key component. May be null, empty or blank (wildcard).
    * @return the list of values matching the given key components, or an empty list if none found.
    */
   public List<String> get(String key1, String key2, String key3) {

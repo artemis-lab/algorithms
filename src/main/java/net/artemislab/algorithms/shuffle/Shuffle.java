@@ -18,9 +18,9 @@ public class Shuffle {
    *
    * <p>The original array is not modified.
    *
-   * @param <T> The type of the array's elements.
-   * @param array The source array to shuffle.
-   * @return A new array containing the elements of {@code array} in random order.
+   * @param <T> the type of the array's elements.
+   * @param array the source array to shuffle.
+   * @return a new array containing the elements of {@code array} in random order.
    * @throws NullPointerException if {@code array} is {@code null}.
    * @see #shuffleForward(Object[])
    * @see #shuffleReverse(Object[])
@@ -46,8 +46,8 @@ public class Shuffle {
    * <p>Iterates from the first element to the last, swapping each element with a randomly chosen
    * element from those at or before it.
    *
-   * @param <T> The type of the array's elements.
-   * @param array The array whose elements to shuffle.
+   * @param <T> the type of the array's elements.
+   * @param array the array whose elements to shuffle.
    * @throws NullPointerException if {@code array} is {@code null}.
    * @see #shuffle(Object[])
    * @see #shuffleReverse(Object[])
@@ -67,8 +67,8 @@ public class Shuffle {
    * <p>Iterates from the last element to the first, swapping each element with a randomly chosen
    * element from those at or before it.
    *
-   * @param <T> The type of the array's elements.
-   * @param array The array whose elements to shuffle.
+   * @param <T> the type of the array's elements.
+   * @param array the array whose elements to shuffle.
    * @throws NullPointerException if {@code array} is {@code null}.
    * @see #shuffle(Object[])
    * @see #shuffleForward(Object[])

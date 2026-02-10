@@ -3,6 +3,7 @@ package net.artemislab.algorithms.shuffle;
 import java.lang.reflect.Array;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
+import net.artemislab.algorithms.utils.Utils;
 
 /** Utility class providing Fisher-Yates shuffle variants. */
 public class Shuffle {
@@ -56,7 +57,7 @@ public class Shuffle {
     Objects.requireNonNull(array, "The array must not be null.");
     for (int i = 0; i < array.length; i++) {
       int j = ThreadLocalRandom.current().nextInt(0, i + 1);
-      swap(array, i, j);
+      Utils.swap(array, i, j);
     }
   }
 
@@ -77,13 +78,7 @@ public class Shuffle {
     Objects.requireNonNull(array, "The array must not be null.");
     for (int i = array.length - 1; i >= 0; i--) {
       int j = ThreadLocalRandom.current().nextInt(0, i + 1);
-      swap(array, i, j);
+      Utils.swap(array, i, j);
     }
-  }
-
-  private static <T> void swap(T[] array, int i, int j) {
-    T temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
   }
 }

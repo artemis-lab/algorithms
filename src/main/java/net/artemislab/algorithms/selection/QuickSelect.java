@@ -40,14 +40,14 @@ public class QuickSelect {
     T[] shuffled = Shuffle.shuffle(array);
     int lo = 0;
     int hi = shuffled.length - 1;
-    while (lo <= hi) {
+    while (lo < hi) {
       int j = partition(shuffled, lo, hi);
       if (j < k) {
         lo = j + 1;
       } else if (j > k) {
         hi = j - 1;
       } else {
-        return shuffled[k];
+        break;
       }
     }
     return shuffled[k];

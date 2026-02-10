@@ -13,6 +13,7 @@ A collection of algorithms & data structures implemented in Java.
 ## Table of Contents
 
 - [Algorithms](#algorithms)
+  - [QuickSelect](#quickselect)
   - [Shuffle](#shuffle)
 - [Data Structures](#data-structures)
   - [WildcardMap](#wildcardmap)
@@ -25,6 +26,25 @@ A collection of algorithms & data structures implemented in Java.
 - [License](#license)
 
 ## Algorithms
+
+### QuickSelect
+
+Finds the k-th smallest element in an unordered array using the QuickSelect algorithm with Lomuto partitioning.
+
+- **Time complexity:** O(n) average, O(n^2) worst case (mitigated by initial random shuffle)
+- **Space complexity:** O(n) for the shuffled copy (original array is not modified)
+
+**Example:**
+
+```java
+Integer[] array = {3, 1, 4, 1, 5, 9, 2, 6};
+
+// Find the 0th smallest (minimum)
+Integer min = QuickSelect.quickSelect(array, 0);  // 1
+
+// Find the 4th smallest element (zero-based)
+Integer element = QuickSelect.quickSelect(array, 4);  // 4
+```
 
 ### Shuffle
 

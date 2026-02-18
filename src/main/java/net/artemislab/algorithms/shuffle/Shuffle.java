@@ -3,6 +3,7 @@ package net.artemislab.algorithms.shuffle;
 import java.lang.reflect.Array;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
+import net.artemislab.algorithms.utils.Utils;
 
 /** Utility class providing Fisher-Yates shuffle variants. */
 public class Shuffle {
@@ -18,9 +19,9 @@ public class Shuffle {
    *
    * <p>The original array is not modified.
    *
-   * @param <T> The type of the array's elements.
-   * @param array The source array to shuffle.
-   * @return A new array containing the elements of {@code array} in random order.
+   * @param <T> the type of the array's elements.
+   * @param array the source array to shuffle.
+   * @return a new array containing the elements of {@code array} in random order.
    * @throws NullPointerException if {@code array} is {@code null}.
    * @see #shuffleForward(Object[])
    * @see #shuffleReverse(Object[])
@@ -46,8 +47,8 @@ public class Shuffle {
    * <p>Iterates from the first element to the last, swapping each element with a randomly chosen
    * element from those at or before it.
    *
-   * @param <T> The type of the array's elements.
-   * @param array The array whose elements to shuffle.
+   * @param <T> the type of the array's elements.
+   * @param array the array whose elements to shuffle.
    * @throws NullPointerException if {@code array} is {@code null}.
    * @see #shuffle(Object[])
    * @see #shuffleReverse(Object[])
@@ -56,7 +57,7 @@ public class Shuffle {
     Objects.requireNonNull(array, "The array must not be null.");
     for (int i = 0; i < array.length; i++) {
       int j = ThreadLocalRandom.current().nextInt(0, i + 1);
-      swap(array, i, j);
+      Utils.swap(array, i, j);
     }
   }
 
@@ -67,8 +68,8 @@ public class Shuffle {
    * <p>Iterates from the last element to the first, swapping each element with a randomly chosen
    * element from those at or before it.
    *
-   * @param <T> The type of the array's elements.
-   * @param array The array whose elements to shuffle.
+   * @param <T> the type of the array's elements.
+   * @param array the array whose elements to shuffle.
    * @throws NullPointerException if {@code array} is {@code null}.
    * @see #shuffle(Object[])
    * @see #shuffleForward(Object[])
@@ -77,13 +78,7 @@ public class Shuffle {
     Objects.requireNonNull(array, "The array must not be null.");
     for (int i = array.length - 1; i >= 0; i--) {
       int j = ThreadLocalRandom.current().nextInt(0, i + 1);
-      swap(array, i, j);
+      Utils.swap(array, i, j);
     }
-  }
-
-  private static <T> void swap(T[] array, int i, int j) {
-    T temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
   }
 }

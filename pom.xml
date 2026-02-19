@@ -13,6 +13,7 @@
 
     <properties>
         <maven.compiler.release>25</maven.compiler.release>
+        <project.build.outputTimestamp>2026-01-01T00:00:00Z</project.build.outputTimestamp>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -20,7 +21,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.13.4</version>
+            <version>6.0.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

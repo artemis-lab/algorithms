@@ -13,6 +13,7 @@ A collection of algorithms & data structures implemented in Java.
 ## Table of Contents
 
 - [Algorithms](#algorithms)
+  - [QuickSelect](#quickselect)
   - [Shuffle](#shuffle)
 - [Data Structures](#data-structures)
   - [WildcardMap](#wildcardmap)
@@ -21,9 +22,29 @@ A collection of algorithms & data structures implemented in Java.
   - [NVD API Key](#nvd-api-key)
 - [Code Quality](#code-quality)
   - [IDE Setup](#ide-setup)
+- [Contributing](#contributing)
 - [License](#license)
 
 ## Algorithms
+
+### QuickSelect
+
+Finds the k-th smallest element in an unordered array using the QuickSelect algorithm with Lomuto partitioning.
+
+- **Time complexity:** O(n) average, O(n^2) worst case (mitigated by initial random shuffle)
+- **Space complexity:** O(n) for the shuffled copy (original array is not modified)
+
+**Example:**
+
+```java
+Integer[] array = {3, 1, 4, 1, 5, 9, 2, 6};
+
+// Find the 0th smallest (minimum)
+Integer min = QuickSelect.quickSelect(array, 0);  // 1
+
+// Find the 4th smallest element (zero-based)
+Integer element = QuickSelect.quickSelect(array, 4);  // 4
+```
 
 ### Shuffle
 
@@ -118,23 +139,29 @@ All checks run automatically via GitHub Actions on every push and pull request. 
 | [Checkstyle](https://checkstyle.org/)                                         | Google Java Style enforcement                             | validate |
 | [Maven Enforcer](https://maven.apache.org/enforcer/maven-enforcer-plugin/)    | Build constraints (Java/Maven versions, dependency rules) | validate |
 | [Sortpom](https://github.com/Ekryd/sortpom)                                   | POM formatting and ordering                               | validate |
-| [Error Prone](https://errorprone.info/)                                        | Compile-time bug detection                                | compile  |
+| [Error Prone](https://errorprone.info/)                                       | Compile-time bug detection                                | compile  |
 | [JaCoCo](https://www.jacoco.org/)                                             | Code coverage (80% line, 75% branch minimum)              | verify   |
 | [Maven Dependency](https://maven.apache.org/plugins/maven-dependency-plugin/) | Unused/undeclared dependency analysis                     | verify   |
 | [Maven Javadoc](https://maven.apache.org/plugins/maven-javadoc-plugin/)       | Javadoc validation and completeness                       | verify   |
 | [Modernizer](https://github.com/gaul/modernizer-maven-plugin)                 | Legacy API detection                                      | verify   |
 | [OWASP Dependency-Check](https://owasp.org/www-project-dependency-check/)     | CVE vulnerability scanning (CVSS >= 7 fails build)        | verify   |
 | [PMD](https://pmd.github.io/)                                                 | Static code analysis (unused code, dead code, complexity) | verify   |
-| [Pitest](https://pitest.org/)                                                  | Mutation testing (80% threshold, profile: `-Ppitest`)     | verify   |
+| [Pitest](https://pitest.org/)                                                 | Mutation testing (80% threshold, profile: `-Ppitest`)     | verify   |
 | [SpotBugs](https://spotbugs.github.io/)                                       | Static bug detection                                      | verify   |
 
 [Dependabot](https://docs.github.com/en/code-security/dependabot) is enabled for automated Maven and GitHub Actions dependency updates.
 
 Coverage reports are uploaded to [Codecov](https://codecov.io/).
 
+[Reproducible builds](https://maven.apache.org/guides/mini/guide-reproducible-builds.html) are enabled via `project.build.outputTimestamp`.
+
 ### IDE Setup
 
 The project uses [google-java-format](https://github.com/google/google-java-format) for formatting. VSCode will recommend the extension automatically via `.vscode/extensions.json`.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup instructions, including verified commit signing.
 
 ## License
 

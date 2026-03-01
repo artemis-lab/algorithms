@@ -41,7 +41,7 @@ jobs:
         run: ./mvnw --batch-mode verify -Dcheckstyle.skip=true -Dnvd.api.key=${{ secrets.NVD_API_KEY }}
 
       - name: Upload dependency check report
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         if: always()
         with:
           name: dependency-check-report
@@ -49,7 +49,7 @@ jobs:
           retention-days: 7
 
       - name: Upload coverage report
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         if: always()
         with:
           name: jacoco-coverage-report
@@ -97,7 +97,7 @@ jobs:
           -Dspotbugs.skip=true
 
       - name: Upload Pitest report
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         if: always()
         with:
           name: pitest-mutation-report

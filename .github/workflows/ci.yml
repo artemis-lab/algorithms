@@ -57,7 +57,7 @@ jobs:
           retention-days: 7
 
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           fail_ci_if_error: false
           files: target/site/jacoco/jacoco.xml
